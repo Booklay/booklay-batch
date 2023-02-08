@@ -8,8 +8,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class OrderDto {
-    private Long id;
+public class Order {
+    private Long orderNo;
     private Long memberNo;
     private Long code;
     private LocalDateTime orderedAt;
