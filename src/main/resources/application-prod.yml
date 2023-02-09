@@ -1,0 +1,4 @@
+server:
+  port: 4040
+
+  pool_size: 20
