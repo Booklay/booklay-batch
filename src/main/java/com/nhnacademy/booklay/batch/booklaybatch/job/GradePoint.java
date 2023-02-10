@@ -109,13 +109,13 @@ public class GradePoint {
             public MemberGrade process(TotalPaymentPrice totalPaymentPrice) throws Exception {
                 log.error("================================item-process:{}", totalPaymentPrice);
 
-                if (totalPaymentPrice.getTotalPrice() > 500000) {
+                if (totalPaymentPrice.getTotalPrice() >= 500000) {
                     return new MemberGrade(totalPaymentPrice.getMemberNo(), "플래티넘", LocalDate.now());}
 
-                if (totalPaymentPrice.getTotalPrice() > 300000) {
+                if (totalPaymentPrice.getTotalPrice() >= 300000) {
                     return new MemberGrade(totalPaymentPrice.getMemberNo(), "골드", LocalDate.now());}
 
-                if (totalPaymentPrice.getTotalPrice() > 100000) {
+                if (totalPaymentPrice.getTotalPrice() >= 100000) {
                     return new MemberGrade(totalPaymentPrice.getMemberNo(), "실버", LocalDate.now());}
 
                 else {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nhnacademy.booklay.batch.booklaybatch.member.mapper.MemberGradeMapper">
+    <insert id="insertGrade" useGeneratedKeys="true">
+        insert into member_grade values
+    </insert>
+
+    <select id="findByMemberNo" resultType="com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberDto">
+        select * from member where memberNo = #{membeNo}
+    </select>
+
+    <select id="getMembers" resultType="com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberDto">
+        select * from member LIMIT #{_skiprows}, #{_pagesize}
+    </select>
+</mapper>
