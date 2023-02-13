@@ -4,14 +4,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nhnacademy.booklay.batch.booklaybatch.member.mapper.MemberGradeMapper">
     <insert id="insertGrade" useGeneratedKeys="true">
-        insert into member_grade values
+        insert into member_grade (member_no, name, date) values (#{memberNo}, #{name}, #{date})
     </insert>
 
-    <select id="findByMemberNo" resultType="com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberDto">
-        select * from member where memberNo = #{membeNo}
-    </select>
+<!--    <select id="retrieveMemberGrades" resultType="com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberGradeResponse">-->
+<!--        select ms.member_no, ms.name, ph.total_point-->
+<!--        from member_grade as ms-->
+<!--        inner join point_history as ph on ms.member_no <![CDATA[=]]> ph.member_no-->
+<!--        where ms.date <![CDATA[=]]> DATE_FORMAT(now(), '%Y-%m-%d')-->
+<!--        LIMIT #{_skiprows}, #{_pagesize}-->
+<!--    </select>-->
 
-    <select id="getMembers" resultType="com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberDto">
-        select * from member LIMIT #{_skiprows}, #{_pagesize}
+    <select id="retrieveMemberGrades" resultType="com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberGradeResponse">
+        select M.name, M.member_no, PH.member_no as point_history_member_no, (SELECT total_point
+                                                                              FROM point_history PH
+                                                                              WHERE PH.member_no <![CDATA[=]]> M.member_no
+                                                                              ORDER BY PH.updated_at DESC LIMIT 1) as total_point, (SELECT MG.name
+                                                                                        FROM member_grade MG
+                                                                                        WHERE MG.member_no <![CDATA[=]]> M.member_no
+                                                                                        ORDER BY MG.date DESC LIMIT 1) AS grade
+        FROM point_history PH
+            RIGHT JOIN member M on M.member_no <![CDATA[=]]> PH.member_no
+            RIGHT JOIN member_grade MG on M.member_no <![CDATA[=]]> MG.member_no
+        where M.deleted_at is null
+        and M.is_blocked <![CDATA[=]]> 0
+        GROUP BY M.member_no
+        LIMIT #{_skiprows}, #{_pagesize}
     </select>
 </mapper>
