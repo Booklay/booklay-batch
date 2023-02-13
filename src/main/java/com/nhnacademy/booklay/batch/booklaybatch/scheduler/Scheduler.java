@@ -14,6 +14,7 @@ import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
 /**
  * @Author : 양승아
  * @Date : 12/02/2023
@@ -27,7 +28,8 @@ public class Scheduler {
     private final Job job;
 
     @Scheduled(cron = "0 0 12 1 1/1 ?")
-    public void run() throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
+    public void run()
+        throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
         JobParametersInvalidException, JobRestartException {
         JobParameters jobParameters = new JobParametersBuilder()
             .addDate("date", new Date())

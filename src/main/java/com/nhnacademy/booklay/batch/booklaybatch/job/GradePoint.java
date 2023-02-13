@@ -1,6 +1,5 @@
 package com.nhnacademy.booklay.batch.booklaybatch.job;
 
-import com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberDto;
 import com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberGrade;
 import com.nhnacademy.booklay.batch.booklaybatch.dto.member.MemberGradeResponse;
 import com.nhnacademy.booklay.batch.booklaybatch.dto.member.PointHistory;
@@ -19,7 +18,6 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -78,6 +76,7 @@ public class GradePoint {
             .pageSize(10)
             .build();
     }
+
     @Bean
     public MyBatisBatchItemWriter<MemberGrade> orderWriter() {
         return new MyBatisBatchItemWriterBuilder<MemberGrade>()
