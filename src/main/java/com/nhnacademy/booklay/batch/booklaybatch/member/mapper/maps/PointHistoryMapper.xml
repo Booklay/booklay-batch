@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nhnacademy.booklay.batch.booklaybatch.member.mapper.PointHistoryMapper">
+    <insert id="insertPoint" useGeneratedKeys="true">
+        insert into point_history (member_no, point, total_point, updated_at, updated_detail)
+        values (#{memberNo}, #{point}, #{totalPoint}, #{updatedAt}, #{updatedDetail})
+    </insert>
+</mapper>
