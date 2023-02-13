@@ -33,7 +33,6 @@ public class Scheduler {
             .addDate("date", new Date())
             .toJobParameters();
 
-        log.error("run-job");
         jobLauncher.run(job, jobParameters);
     }
 }
