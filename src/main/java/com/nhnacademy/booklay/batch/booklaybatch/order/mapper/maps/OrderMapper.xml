@@ -8,6 +8,7 @@
         from `order`
         where ordered_at <![CDATA[<=]]> (last_day(now() - interval 1 month) + interval 1 day)
         and ordered_at <![CDATA[>]]> (last_day(now() - interval 4 month) + interval 1 day)
+        and member_no <![CDATA[!=]]> null
         group by member_no
     </select>
 </mapper>
