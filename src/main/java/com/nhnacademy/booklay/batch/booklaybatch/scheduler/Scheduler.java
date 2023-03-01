@@ -27,7 +27,7 @@ public class Scheduler {
     private final JobLauncher jobLauncher;
     private final Job job;
 
-    @Scheduled(cron = "0 0 14 1 1/1 ?")
+    @Scheduled(cron = "0 0 12 1 1/1 ?")
     public void run()
         throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
         JobParametersInvalidException, JobRestartException {
